@@ -35,6 +35,7 @@ int main()
 	const int MAXCHARS = sizeof(userString) / sizeof(userString[0]);
 	int index;
 	char *foundNeedle;
+	char tmpChar;
 
 	// Ask user for string, store input into userString
 	printf("Please enter string\n");
@@ -51,36 +52,33 @@ int main()
 		return 1;
 
 	} 
-	else if(0 == userString[0])
+	else if('\n' == userString[0])
 	{
+		// Empty string
 		printf("No characters to search\n");
 		return 1;
 	}
-	printf("String Length: %lu", strlen(userString));
-	printf("User String: %d", userString[0]);
 
-	// Ask user for needle
 	printf("Please enter character to search for\n");
-	if(EOF == (needle = getc(stdin)))
+	needle = getchar();
+	if('\n' == needle || EOF == needle) 
 	{
 		printf("Unable to gather search character\n");
 		return 1;
 	}
 
-	// Ask user for newNeedle
+	while(EOF != (tmpChar = getchar()) && '\n' != tmpChar); // Loop for extra characters
+
 	printf("Please enter character to replace with\n");
-	while('\n' == (newNeedle = getc(stdin))) {} // Ignore new line
-	if(EOF == newNeedle)
+	newNeedle = getchar();
+	if('\n' == newNeedle || EOF == newNeedle) 
 	{
 		printf("Unable to gather replacement character\n");
 		return 1;
 	}
 
-	// Catch errors
-
 	// Modify the string, save it to moddedString
 	strcpy(moddedString, userString);
-	
 	while(NULL != (foundNeedle = strchr(moddedString, needle))) {
 		*foundNeedle = newNeedle;
 	}
