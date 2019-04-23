@@ -1,12 +1,13 @@
-
 CC=gcc
 CFLAGS=-I
 BIN_DIR=bin/
 LIB_DIR=lib/
 OBJ_DIR=obj/
-TARGET=basic_arrays advanced_arrays bitwise operational_expression remove_lines sub_it
+MIDTERM_DIR=Midterm_Review/
+FINAL_DIR=Final_Review/
+EXERCISES=basic_arrays advanced_arrays bitwise operational_expression remove_lines sub_it
 
-all: $(TARGET)
+all: $(EXERCISES)
 
 advanced_arrays:
 	$(CC) -o $(BIN_DIR)/advanced_arrays advanced_arrays.c $(CFLAGS)
@@ -20,6 +21,13 @@ basic_arrays:
 
 bitwise:
 	$(CC) -o $(BIN_DIR)/bitwise bitwise.c $(CFLAGS)
+
+midterm.o: $(MIDTERM_DIR)/EnglishFunctions.h
+	$(CC) -c -o $(OBJ_DIR)/EnglishFunctions.o $(MIDTERM_DIR)/EnglishFunctions.c $(CFLAGS)
+	$(CC) -c -o $(OBJ_DIR)/UnitTestCode.o $(MIDTERM_DIR)/UnitTestCodev2.c $(CFLAGS)
+
+midterm: midterm.o
+	$(CC) -o $(BIN_DIR)/midterm $(OBJ_DIR)/EnglishFunctions.o $(OBJ_DIR)/UnitTestCode.o $(CFLAGS)
 
 operational_expression:
 	$(CC) -o $(BIN_DIR)/operational_expression operational_expression.c $(CFLAGS)
