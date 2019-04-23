@@ -4,7 +4,7 @@ CFLAGS=-I
 BIN_DIR=bin/
 LIB_DIR=lib/
 OBJ_DIR=obj/
-TARGET=basic_arrays advanced_arrays bitwise operational_expression remove_lines
+TARGET=basic_arrays advanced_arrays bitwise operational_expression remove_lines sub_it
 
 all: $(TARGET)
 
@@ -26,6 +26,9 @@ operational_expression:
 
 remove_lines:
 	$(CC) -o $(BIN_DIR)/remove_lines remove_lines.c $(CFLAGS)
+
+sub_it:
+	$(CC) -o $(BIN_DIR)/sub_it sub_it.c $(CFLAGS)
 
 clean:
 	rm -f $(BIN_DIR)/*
