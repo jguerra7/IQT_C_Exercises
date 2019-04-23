@@ -5,7 +5,7 @@ BIN_DIR=bin/
 LIB_DIR=lib/
 OBJ_DIR=obj/
 SRC_FILES=$(wildcard *.c)
-TARGET=basic_arrays advanced_arrays bitwise operational_expression
+TARGET=basic_arrays advanced_arrays bitwise operational_expression remove_lines
 
 all: $(TARGET)
 
@@ -24,6 +24,9 @@ bitwise:
 
 operational_expression:
 	$(CC) -o $(BIN_DIR)/operational_expression operational_expression.c $(CFLAGS)
+
+remove_lines:
+	$(CC) -o $(BIN_DIR)/remove_lines remove_lines.c $(CFLAGS)
 
 clean:
 	rm -f $(BIN_DIR)/*
