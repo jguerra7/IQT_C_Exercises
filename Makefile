@@ -4,7 +4,6 @@ CFLAGS=-I
 BIN_DIR=bin/
 LIB_DIR=lib/
 OBJ_DIR=obj/
-SRC_FILES=$(wildcard *.c)
 TARGET=basic_arrays advanced_arrays bitwise operational_expression remove_lines
 
 all: $(TARGET)
