@@ -9,6 +9,9 @@
 // This header definition file includes the instructor solution for the header functions.
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+#include <stdlib.h>
+#include <stdio.h>
+
 /*
 * FUNCTION:   int is_it_alphabet(signed char inputChar);
 *
@@ -25,7 +28,11 @@
 */
 int is_it_alphabet(signed char inputChar)
 {
-	return 90;		//You will want to change this;
+	if((inputChar >= 'a' && inputChar <= 'z') || (inputChar >= 'A' && inputChar <= 'Z')) {
+		return 1;
+	} else {
+		return 0;
+	}
 }
 
 
@@ -45,7 +52,31 @@ int is_it_alphabet(signed char inputChar)
 */
 int remove_non_letters(char * sentenceString)
 {
-	return 90; // You'll want to change this
+	int removedLetters = 0;
+	if(sentenceString == NULL) {
+		removedLetters = -1;
+	}
+	else {
+		printf("===================\n");
+		printf("Original String: \'%s\'\n", sentenceString);
+		int index;
+		for(index = 0; index < strlen(sentenceString); index++) {
+			if(!is_it_alphabet(sentenceString[index]) || sentenceString[index] == ' ') {
+				if(index + 1 < strlen(sentenceString)) { // Verify memmove will not go out of bounds
+					memmove(&sentenceString[index], &sentenceString[index + 1], strlen(sentenceString) - index);
+					index--; // Check index again for new character
+				} 	else {
+                    sentenceString[index] = '\0'; // Replace with NULL terminator if out of bounds
+                }	
+				removedLetters++;		
+			}
+		}
+		printf("Removed Characters: %d\n", removedLetters);
+		printf("New String: \'%s\'\n", sentenceString);
+		printf("===================\n");
+	}
+	
+	return removedLetters;
 }
 
 
@@ -91,7 +122,30 @@ int remove_non_letters(char * sentenceString)
 */
 int reverse_string(char * inputString, char * outputBuff, int inputPosition)
 {
-	return 90;		//You will want to change this
+	int result = 0;
+	int inputIndex, outputIndex;
+
+	if(inputString == NULL || outputBuff == NULL) {
+		result = -1;
+	} else if(inputPosition < 0 || inputPosition > strlen(inputString)) {
+		result = -2;
+	} else {
+		outputIndex = 0;
+
+		if(inputPosition == strlen(inputString)) {
+			outputBuff[outputIndex++] = inputString[inputIndex];
+			result = -2;
+		} else {
+			for(inputIndex = strlen(inputString) - 1; inputIndex >= inputPosition; inputIndex--) {
+				outputBuff[outputIndex++] = inputString[inputIndex];
+				result++;
+			}
+		}
+		
+		outputBuff[outputIndex] = '\0';
+	}
+
+	return result;
 }
 
 
@@ -114,5 +168,19 @@ int reverse_string(char * inputString, char * outputBuff, int inputPosition)
 */
 int clear_a_buffer(char * fullBuff, int buffSize)
 {
-	return 90;		//You will want to change this
+	int result;
+	int index;
+
+	if(fullBuff == NULL) {
+		result = -1;
+	} else if(buffSize <= 0) {
+		result = -2;
+	} else {
+		for(index = 0; index < buffSize; index++) {
+			fullBuff[index] = 0;
+		}
+		result = 0;
+	}
+
+	return result;		//You will want to change this
 }

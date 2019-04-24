@@ -1,11 +1,11 @@
 CC=gcc
 CFLAGS=-I
-BIN_DIR=bin/
-LIB_DIR=lib/
-OBJ_DIR=obj/
-MIDTERM_DIR=Midterm_Review/
-FINAL_DIR=Final_Review/
-EXERCISES=basic_arrays advanced_arrays bitwise operational_expression remove_lines sub_it
+BIN_DIR=bin
+LIB_DIR=lib
+OBJ_DIR=obj
+MIDTERM_DIR=Midterm_Review
+FINAL_DIR=Final_Review
+EXERCISES=basic_arrays advanced_arrays bitwise operational_expression remove_lines sub_it midterm
 
 all: $(EXERCISES)
 
