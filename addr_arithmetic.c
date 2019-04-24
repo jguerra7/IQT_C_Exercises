@@ -474,11 +474,42 @@ int main(void)
  */
 char * split_the_string(char * string_ptr, char delimiter)
 {
+	printf("\n==================================\n");
+	printf("Original String: \'%s\'\n", string_ptr);
+	printf("Delimiter: %d \'%c\'\n", delimiter, delimiter);
+	printf("==================================\n");
 
-	// YOUR CODE HERE
-	//////////////////////////////////
-	//////////////////////////////////
-	//////////////////////////////////
-	return NULL;
+	char* tmp_ptr = string_ptr;
+	char* found_ptr = NULL;
+
+	if(string_ptr == NULL) {
+		return ERROR_NULL_POINTER;
+	} else if(delimiter == '\0') {
+		return ERROR_NULL_DELIMITER;
+	}
+	
+	printf("==================================\n");
+	while(*tmp_ptr != '\0') {	
+		printf("%d %c\n", *tmp_ptr, *tmp_ptr);
+		
+		if(*tmp_ptr == delimiter) {
+			if(found_ptr == NULL) {
+				found_ptr = tmp_ptr + 1;
+				//printf("==================================\n");
+				printf("Found: %s\n", found_ptr);
+				//printf("==================================\n");
+			} else {
+				return ERROR_ABUNDANT_DELIMITER;
+			}
+		}
+		tmp_ptr++;
+	}
+	printf("==================================\n");
+
+	if(found_ptr != NULL) {
+		return found_ptr;
+	} else {
+		return string_ptr;
+	}
 }
 

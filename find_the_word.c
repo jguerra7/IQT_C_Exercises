@@ -370,11 +370,48 @@ int main(void)
  */
 char * find_the_word(char * sentence_ptr, char * searchWord_ptr, int * errorCode_ptr)
 {
-	/////////////////////////
-	/////////////////////////
-	////////////////////////
-	//INSERT STUDENT CODE//
-	//////////////////////
-	//////////////////////
+	// Null checks
+	if(sentence_ptr == NULL) {
+		*errorCode_ptr = ERROR_NULL_SENTENCE_POINTER;
+		return NULL;
+	} else if(searchWord_ptr == NULL) {
+		*errorCode_ptr = ERROR_NULL_SEARCH_POINTER;
+		return NULL;
+	} else if(errorCode_ptr == NULL) {
+		return NULL;
+	}
+
+	char* found_ptr = NULL;
+	char* tmp_ptr = searchWord_ptr;
+	int characterCount = 0;
+	while(*sentence_ptr != '\0') {
+		if(*sentence_ptr == *tmp_ptr) {
+			// Set pointer to start of found word
+			if(found_ptr == NULL) {
+				found_ptr = sentence_ptr;
+			}
+
+			// Check if full word was found
+			characterCount++;
+			if(characterCount == strlen(searchWord_ptr)) {
+				*errorCode_ptr = ERROR_CODE_SUCCESS;
+				return found_ptr;
+			}
+
+			// Compare next letter in search word
+			tmp_ptr++;
+		} else {
+			// Reset search
+			found_ptr = NULL;
+			tmp_ptr = searchWord_ptr;
+			characterCount = 0;
+		}
+		// Go to next letter in sentence
+		sentence_ptr++;
+	}
+
+	// Not found
+	*errorCode_ptr = ERROR_SEARCH_NOT_FOUND;
+	return NULL;
 }
 
