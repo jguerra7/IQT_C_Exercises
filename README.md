@@ -18,7 +18,7 @@
 5. ~~remove_lines~~
 6. ~~sub_it~~
 7. ~~Midterm_Review~~ \*
-8. addr_arithmetic
+8. ~~addr_arithmetic~~
 9. ~~find_the_word~~
 10. ~~Bubble Sort~~
 11. IO \*
