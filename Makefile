@@ -5,7 +5,7 @@ LIB_DIR=lib
 OBJ_DIR=obj
 MIDTERM_DIR=Midterm_Review
 FINAL_DIR=Final_Review
-EXERCISES=basic_arrays advanced_arrays bitwise operational_expression remove_lines sub_it addr_arithmetic find_the_word
+EXERCISES=basic_arrays advanced_arrays bitwise operational_expression remove_lines sub_it addr_arithmetic find_the_word bubble_sort
 REVIEW=midterm
 
 all: $(EXERCISES) $(REVIEW)
@@ -30,6 +30,9 @@ basic_arrays:
 
 bitwise:
 	$(CC) -o $(BIN_DIR)/bitwise bitwise.c $(CFLAGS)
+
+bubble_sort:
+	$(CC) -o $(BIN_DIR)/bubble_sort bubble_sort.c $(CFLAGS)
 
 find_the_word: 
 	$(CC) -o $(BIN_DIR)/find_the_word find_the_word.c $(CFLAGS)
