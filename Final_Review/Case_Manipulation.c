@@ -21,11 +21,18 @@
 //		If letter is not an alphabet letter, return letter
 unsigned int chg_alpha_case(unsigned int letter)
 {
-	////////////////////////////////////
-	/* INSERT YOUR CODE SOLUTION HERE */
-	////////////////////////////////////
+	const int UPPER_LOWER_DIFF = 32;
 
-	return 90;	// You'll likely want to change this
+	if(letter >= 'a' && letter <= 'z') {
+		// Convert lower case to upper case
+		return letter - UPPER_LOWER_DIFF;
+	} else if(letter >= 'A' && letter <= 'Z') {
+		// Convert upper case to lower case
+		return letter + UPPER_LOWER_DIFF;
+	} else {
+		// Not a letter
+		return letter;
+	}
 }
 
 
@@ -39,11 +46,18 @@ unsigned int chg_alpha_case(unsigned int letter)
 //		Otherwise, return string_ptr
 char * chg_string_case(char * string_ptr)
 {
-	////////////////////////////////////
-	/* INSERT YOUR CODE SOLUTION HERE */
-	////////////////////////////////////
+	if(string_ptr == NULL) {
+		// NULL input
+		return NULL;
+	}
 
-	return NULL;	// You'll likely want to change this
+	int index;
+	for(index = 0; string_ptr[index] != '\0'; index++) {
+		// Change each character
+		string_ptr[index] = chg_alpha_case(string_ptr[index]);
+	}
+
+	return string_ptr;
 }
 
 ////////////////////////////// FUNC 3 //////////////////////////////
@@ -59,9 +73,22 @@ char * chg_string_case(char * string_ptr)
 //		Otherwise, return a pointer to index "start_here"
 char * chg_starting_here(char * string_ptr, int start_here)
 {
-	////////////////////////////////////
-	/* INSERT YOUR CODE SOLUTION HERE */
-	////////////////////////////////////
+	if(string_ptr == NULL || start_here < 0) {
+		return NULL;
+	}
 
-	return NULL;	// You'll likely want to change this
+	// No strlen, loop through string until null character to find length :-|
+	int string_len = 0;
+	char* tmp_ptr = string_ptr;
+	while(*tmp_ptr++ != '\0') { 
+		string_len++; 
+	}
+	if(start_here > string_len) {
+		return NULL;
+	}
+
+	// Change string starting from pointer
+	chg_string_case(string_ptr + start_here);
+
+	return string_ptr + start_here;
 }

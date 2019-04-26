@@ -12,7 +12,7 @@ MIDTERM_DIR=Midterm_Review
 FINAL_DIR=Final_Review
 EXERCISES=basic_arrays advanced_arrays bitwise operational_expression remove_lines \
 		  sub_it addr_arithmetic find_the_word bubble_sort io needle_haystack
-REVIEW=midterm
+REVIEW=midterm final
 
 all: $(EXERCISES) $(REVIEW)
 
@@ -65,6 +65,13 @@ midterm.o:  make_dir $(MIDTERM_DIR)/EnglishFunctions.h
 
 midterm: make_dir midterm.o
 	$(CC) -o $(BIN_DIR)/midterm $(OBJ_DIR)/EnglishFunctions.o $(OBJ_DIR)/UnitTestCode.o $(CFLAGS)
+
+final.o:  make_dir $(FINAL_DIR)/Case_Manipulation.h
+	$(CC) -c -o $(OBJ_DIR)/Case_Manipulation.o $(FINAL_DIR)/Case_Manipulation.c $(CFLAGS)
+	$(CC) -c -o $(OBJ_DIR)/testCode.o $(FINAL_DIR)/testCode.c $(CFLAGS)
+
+final: make_dir final.o
+	$(CC) -o $(BIN_DIR)/final $(OBJ_DIR)/Case_Manipulation.o $(OBJ_DIR)/testCode.o $(CFLAGS)
 
 # Setup 
 make_dir:
