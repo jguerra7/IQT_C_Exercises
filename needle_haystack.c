@@ -6,7 +6,9 @@ Remove the needle from the haystack
 AKA: Move the substring from the string using memory operators and functions
 
 */
-// TODO: Include any needed headers
+#include <stdio.h>    // printf
+#include <stdlib.h>   // malloc
+#include <string.h>   // strstr, memmove
 
 
 int haystack_needle(char *haystack, char *needle, char *buffer);
@@ -16,23 +18,24 @@ int main()
   char string[] = "This is my brand new sentence";
   char substring[] = " brand new";
 
-  // TODO: Create a char buffer named *buffer using malloc \
-  ensure it is large enough to hold string[] + a nul-terminator
+  printf("Haystack: %s\n", string);
+  printf("Needle: %s\n", substring);
 
-
-  // TODO: Ensure buffer was created
-
+  char* buffer =  malloc(sizeof(string));
+  if(buffer == NULL) {
+    printf("Unable to create buffer\n");
+    return 1;
+  }
 
   haystack_needle(string, substring, buffer);
 
-  // TODO: Give back the memory from buffer
+  if(buffer !=  NULL) {
+    free(buffer);
+  }
 
-
-  // TODO: Print out the modified string
-
+  printf("New String: %s\n", string);
 
   return 0;
-
 }
 
 /*
@@ -51,21 +54,27 @@ return -1 on error .... only needed if userinput is enabled.
 */
 int haystack_needle(char *haystack, char *needle, char *buffer)
 {
-    int needleLength = strlen(needle);
+    if(haystack == NULL || needle == NULL || buffer == NULL) {
+      // Error: NULL values
+      return -1;
+    } else if(sizeof(needle) > sizeof(buffer)) {
+      // Error: Buffer too small
+      return -1;
+    }
 
-    // TODO: Using strstr() find the needle in the haystack (substring in string)\
-    the pointer that is returned is pointing to the substring within the string \
-    Set that pointer to a new char pointer called *mark_position
+    strcpy(buffer, needle);
 
+    char* mark_position = strstr(haystack, buffer);
+    if(mark_position == NULL) {
+        // Error: No needle 
+        return -1;
+    }
 
-    // TODO: Using strcpy(), store the needle into the buffer... \
-    you are not authorized to use the variable needle.
-
-
-
-    // TODO: Using memmove, overwrite the haystack (string)... effectivly removing the needle \
-    // HINT: start at the mark_position... that is after all where we need to start replacing.
-
+    // Memmove to remove needle from haystack
+    int needle_length = strlen(buffer);
+    //printf("Needle location: %s\n", mark_position);
+    //printf("End of Needle: %s\n", mark_position + needle_length);
+    memmove(mark_position, mark_position + needle_length, strlen(mark_position + needle_length) + 1);
 
     return 0;
 }

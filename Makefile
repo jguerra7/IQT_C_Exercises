@@ -11,7 +11,7 @@ RMRF= rm -rf
 MIDTERM_DIR=Midterm_Review
 FINAL_DIR=Final_Review
 EXERCISES=basic_arrays advanced_arrays bitwise operational_expression remove_lines \
-		  sub_it addr_arithmetic find_the_word bubble_sort
+		  sub_it addr_arithmetic find_the_word bubble_sort io needle_haystack
 REVIEW=midterm
 
 all: $(EXERCISES) $(REVIEW)
@@ -42,6 +42,12 @@ bubble_sort: make_dir
 
 find_the_word: make_dir
 	$(CC) -o $(BIN_DIR)/find_the_word find_the_word.c $(CFLAGS)
+
+io: make_dir
+	$(CC) -o $(BIN_DIR)/io io.c $(CFLAGS)
+
+needle_haystack: make_dir
+	$(CC) -o $(BIN_DIR)/needle_haystack needle_haystack.c $(CFLAGS)
 
 operational_expression: make_dir
 	$(CC) -o $(BIN_DIR)/operational_expression operational_expression.c $(CFLAGS)

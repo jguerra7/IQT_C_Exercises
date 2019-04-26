@@ -22,7 +22,7 @@
 9. ~~find_the_word~~
 10. ~~Bubble Sort~~
 11. IO \*
-12. needle_haystack \*
+12. ~~needle_haystack~~ \*
 13. Final_Review \*
 
 The \* indicates signifigant labs 

@@ -11,6 +11,7 @@
 
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
 
 /*
 * FUNCTION:   int is_it_alphabet(signed char inputChar);
